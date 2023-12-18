@@ -10,34 +10,68 @@
 });
 </script>
 <script>
-    $(document).ready(function() {
-        $('#addBrandForm').on('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
+$(document).ready(function() {
+    // Handling form submission for adding a brand
+    $('#addBrandForm').on('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+        $('#addModal').modal('show');
+        // Get form data
+        var formData = $(this).serialize();
 
-            // Get form data
-            var formData = $(this).serialize();
-
-            // AJAX POST request
-            $.ajax({
-                url: '/add-brand',
-                method: 'POST',
-                data: formData,
-                dataType: 'JSON',
-                success: function(response) {
-                    // Handle success
-                    if(response.status == 'success')
-                    {
-                        $('#addModal').modal('hide');
-                        // $('#addBrandForm')[0].reset();
-                        $('.table').load(location.href+ ' .table');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    // Handle error
-                    // console.log(error);
+        // AJAX POST request to add brand
+        $.ajax({
+            url: '/add-brand',
+            method: 'POST',
+            data: formData,
+            dataType: 'JSON',
+            success: function(response) {
+                // Handle success
+                if(response.status == 'success') {
+                    $('#addModal').modal('hide');
+                    $('.table').load(location.href + ' .table');
                 }
-            });
+            },
+            error: function(xhr, status, error) {
+                // Handle error
+                console.error(error);
+            }
         });
     });
+
+    // Handling click event to populate update modal
+    $(document).on('click', '.update_brand_form', function(e) {
+        e.preventDefault();
+        $('#updateModal').modal('show');
+        let brandId = $(this).data('id');
+        let brandName = $(this).data('name');
+
+        $('#up_id').val(brandId);
+        $('#up_name').val(brandName);
+    });
+
+    // Handling form submission for updating a brand
+    $(document).on('submit', '#update_brand', function(e) {
+        e.preventDefault();
+
+        var up_id = $('#up_id').val();
+        var up_name = $('#up_name').val();
+
+        $.ajax({
+            url: '/update-brand',
+            method: 'POST', // Change the method to POST
+            data: { up_id: up_id, up_name: up_name },
+            dataType: 'JSON',
+            success: function(response) {
+                if (response.status == 'success') {
+                    $('#updateModal').modal('hide');
+                    $('.table').load(location.href + ' .table');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+});
 </script>
 

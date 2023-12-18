@@ -31,17 +31,30 @@
         <td>{{ $brand->name }}</td>
         <td>{{ $brand->entry_date }}</td>
         <td>
-            <a href="#" class="btn btn-success"><i class="las la-edit"></i></a>
+        <a href="#" 
+    class="btn btn-success update_brand_form"
+    data-bs-toggle="modal"
+    data-bs-target="#updateModal"
+    data-id="{{ $brand->id }}"
+    data-name="{{ $brand->name }}"
+    data-entry_date="{{ $brand->entry_date }}"
+><i class="las la-edit"></i></a>
             <a href="#" class="btn btn-danger"><i class="las la-times"></i></a>
         </td>
     </tr>
     @endforeach
   </tbody>
 </table>
-@include('brand_js')
+
+
 @include('add_modal_brand')
-@push('css')
+@include('update_modal_brand')
+
+@include('brand_js')
+
+
+<!-- @push('css')
     <link rel="stylesheet" href="">
-@endpush
+@endpush -->
   </body>
 </html>

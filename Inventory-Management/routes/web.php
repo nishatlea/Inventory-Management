@@ -19,3 +19,4 @@ use App\Http\Controllers\BrandController;
 // });
 Route::get('/', [BrandController::class,'brands'])->name('brands');
 Route::post('/add-brand', [BrandController::class,'addBrand'])->name('add-brand');
+Route::post('/update-brand', [BrandController::class,'updateBrand'])->name('update-brand');
