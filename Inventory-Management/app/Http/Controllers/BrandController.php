@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Brand;
 
 class BrandController extends Controller
 {
     public function brands()
     {
-        return view('brands');
+        $brands = Brand::latest()->paginate(5);
+        return view('brands', compact('brands'));
     }
 
     public function addBrand(Request $request)
     {
-        dd($request->name);
+        //         // dd($request->brand_name);
         $request->validate(
             [
-'brand_name' => 'required|unique:brands',
+        'brand_name' => 'required|unique:brands,name',
             ],
             [
                 'brand_name.required' => 'Brand Name is required',
@@ -25,8 +27,11 @@ class BrandController extends Controller
         );
 
         $brand = new Brand();
-        $brand->name = $request->name;
+        $brand->name = $request->brand_name;
 
         $brand->save();
+        return response()->json([
+            'status' => 'success',
+        ]);
     }
 }

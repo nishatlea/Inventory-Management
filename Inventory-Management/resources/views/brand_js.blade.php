@@ -10,40 +10,34 @@
 });
 </script>
 <script>
-    $(document).ready(function(){
-        $(document).on('click', '.add_brand', function(e){
-            e.preventDefault();
-            let name = $('#brand_name').val();
-            console.log(name);
+    $(document).ready(function() {
+        $('#addBrandForm').on('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
 
+            // Get form data
+            var formData = $(this).serialize();
+
+            // AJAX POST request
             $.ajax({
-                url: "{{ route('add-brand') }}",
+                url: '/add-brand',
                 method: 'POST',
-                data: { name : name }, // Use 'name' variable here
-
-    beforeSend: function (xhr) {
-            var token = $('meta[name="csrf_token"]').attr('content');
-
-            if (token) {
-                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
-            }
-        },
-                
-                success: function(res){
-                    // Handle success response
-                    console.log(data);
-                },
-                error: function(err){
-                    if(err.responseJSON && err.responseJSON.errors) {
-                        let errors = err.responseJSON.errors;
-                        let errMsgContainer = $('.error-messages'); // Replace this with your error messages container selector
-
-                        $.each(errors, function(index, value) {
-                            errMsgContainer.append('<span class="text-danger">' + value + '</span><br>');
-                        });
+                data: formData,
+                dataType: 'JSON',
+                success: function(response) {
+                    // Handle success
+                    if(response.status == 'success')
+                    {
+                        $('#addModal').modal('hide');
+                        // $('#addBrandForm')[0].reset();
+                        $('.table').load(location.href+ ' .table');
                     }
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                    // console.log(error);
                 }
             });
         });
     });
 </script>
+

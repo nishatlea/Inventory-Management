@@ -13,7 +13,7 @@ return new class () extends Migration {
         Schema::create('brands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
-            $table->timestamp('entry_date')->nullable();
+            $table->timestamp('entry_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
         });
     }

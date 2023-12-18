@@ -4,10 +4,11 @@
 </button> -->
 
 <!-- Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
 
-<form action="/add-brand" method="post" id="addBrandForm">
-
+<form action="/update-brand" method="post" id="updateBrandForm">
+@csrf 
+<input type = "hidden" id = "up_id"> 
 <h4>Fields marked with * are necessary</h4>
 <div class="errMsgContainer mb-3"> </div>
 <div class="modal-dialog">

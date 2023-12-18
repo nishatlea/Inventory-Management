@@ -15,4 +15,5 @@ class VerifyCsrfToken extends Middleware
         "/",
         "/add-brand",
     ];
+
 }
