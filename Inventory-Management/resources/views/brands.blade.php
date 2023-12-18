@@ -14,6 +14,7 @@
    <div class="container"> 
     <div class="row">
         <div class="col-md-8"> </div>
+        <a href=" " class="btn btn-success my-3" data-bs-toggle="modal" data-bs-target="#addModal">Add Product </a>
     <table class="table">
   <thead>
     <tr>
@@ -46,7 +47,8 @@
     </tr>
   </tbody>
 </table>
-@include('home_js')
+@include('brand_js')
+@include('add_modal_brand')
 @push('css')
     <link rel="stylesheet" href="">
 @endpush

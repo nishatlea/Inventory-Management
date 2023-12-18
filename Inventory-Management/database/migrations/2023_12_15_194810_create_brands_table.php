@@ -11,9 +11,10 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::create('brands', function (Blueprint $table) {
-            $table->increments('id', 11);
-            $table->strin('name', 50);
-            $table->timestamps('entry_date');
+            $table->increments('id');
+            $table->string('name', 50);
+            $table->timestamp('entry_date')->nullable();
+            $table->timestamps();
         });
     }
 
