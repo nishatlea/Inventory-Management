@@ -44,7 +44,7 @@ $(document).ready(function() {
         $('#updateModal').modal('show');
         let brandId = $(this).data('id');
         let brandName = $(this).data('name');
-
+        console.log(brandId);
         $('#up_id').val(brandId);
         $('#up_name').val(brandName);
     });
@@ -53,13 +53,15 @@ $(document).ready(function() {
     $(document).on('submit', '#update_brand', function(e) {
         e.preventDefault();
 
-        var up_id = $('#up_id').val();
-        var up_name = $('#up_name').val();
-
+        // var up_id = $('#up_id').val();
+        // var up_name = $('#up_name').val();
+        var formData = $(this).serialize();
+        console.log(up_name);
         $.ajax({
             url: '/update-brand',
-            method: 'POST', // Change the method to POST
-            data: { up_id: up_id, up_name: up_name },
+            method: 'PUT', // Change the method to POST
+            //data: { up_id: up_id, up_name: up_name },
+            data: formData,
             dataType: 'JSON',
             success: function(response) {
                 if (response.status == 'success') {

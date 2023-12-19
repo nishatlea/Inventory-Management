@@ -46,9 +46,8 @@
   </tbody>
 </table>
 
-
-@include('add_modal_brand')
 @include('update_modal_brand')
+@include('add_modal_brand')
 
 @include('brand_js')
 
