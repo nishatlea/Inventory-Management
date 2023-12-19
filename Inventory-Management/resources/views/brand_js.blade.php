@@ -79,7 +79,6 @@ $(document).ready(function() {
     $(document).on('click', '.delete_brand', function(e) {
         e.preventDefault();
         let brandId = $(this).data('id');
-        alert(brandId);
         if(confirm('Are you sure to delete the product?')){
 
             $.ajax({

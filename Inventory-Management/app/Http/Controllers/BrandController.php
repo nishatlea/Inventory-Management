@@ -60,6 +60,15 @@ class BrandController extends Controller
         return redirect('/')->with('success', 'Brand updated successfully.');
     }
 
+    public function deleteBrand(Request $request)
+    {
+        Brand::findOrFail($request->brand_id)->delete();
+        return response()->json([
+            'status' => 'success',
+        ]);
+    }
+
+
 
 
 
