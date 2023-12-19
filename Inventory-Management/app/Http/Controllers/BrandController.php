@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 
@@ -48,16 +49,15 @@ class BrandController extends Controller
         //         'up_name.unique' => 'Brand already exists',
         //     ]
         // );
-        dump($request->up_id);
-        dump($request->up_name);
         $brand = Brand::findOrFail($id);
-        dump($id);
         $brand->name = $request->up_name; // Assuming the field name is 'up_name'
         $brand->save();
 
-        return response()->json([
-            'status' => 'success',
-        ]);
+        // return response()->json([
+        //     'status' => 'success',
+        // ]);
+
+        return redirect('/')->with('success', 'Brand updated successfully.');
     }
 
 
