@@ -1,9 +1,12 @@
 <!-- Update Modal -->
+
 <div class="modal fade updateModal" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
     <!-- Modal content -->
-    @csrf
-    <form action="/update-brand" method="PUT" id="updateBrandForm">
-     
+    
+    <form action="{{ route('update.brand', ['id' => $brand->id]) }}" method="POST" id="updateBrandForm">
+    @csrf <!-- CSRF token -->
+    @method('PUT') <!-- Method spoofing -->
+    <!-- Other form fields -->
         <input type="hidden" id="up_id">
         <!-- <h4>Fields marked with * are necessary</h4> -->
         <div class="errMsgContainer mb-3"></div>

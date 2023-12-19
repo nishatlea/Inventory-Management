@@ -36,7 +36,7 @@ class BrandController extends Controller
     }
 
     //update Brand
-    public function updateBrand(Request $request)
+    public function updateBrand(Request $request, $id)
     {
         // dd($request->brand_name);
         // $request->validate(
@@ -48,8 +48,13 @@ class BrandController extends Controller
         //         'up_name.unique' => 'Brand already exists',
         //     ]
         // );
+        dump($request->up_id);
+        dump($request->up_name);
+        $brand = Brand::findOrFail($id);
+        dump($id);
+        $brand->name = $request->up_name; // Assuming the field name is 'up_name'
+        $brand->save();
 
-        Brand::where('id', $request->up_id)->update(['name' => $request -> up_name]);
         return response()->json([
             'status' => 'success',
         ]);

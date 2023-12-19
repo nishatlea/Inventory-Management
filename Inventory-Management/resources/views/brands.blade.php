@@ -39,7 +39,13 @@
     data-name="{{ $brand->name }}"
     data-entry_date="{{ $brand->entry_date }}"
 ><i class="las la-edit"></i></a>
-            <a href="#" class="btn btn-danger"><i class="las la-times"></i></a>
+
+
+            <a href="#" 
+            class="btn btn-danger delete_brand"
+            data-id="{{ $brand->id }}"
+            >
+            <i class="las la-times"></i></a>
         </td>
     </tr>
     @endforeach

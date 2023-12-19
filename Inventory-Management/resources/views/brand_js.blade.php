@@ -41,24 +41,26 @@ $(document).ready(function() {
     // Handling click event to populate update modal
     $(document).on('click', '.update_brand_form', function(e) {
         e.preventDefault();
-        $('#updateModal').modal('show');
+        console.log("clicked");
+        // $('#updateModal').modal('show');
         let brandId = $(this).data('id');
         let brandName = $(this).data('name');
-        console.log(brandId);
+        console.log(brandId + " brandId");
         $('#up_id').val(brandId);
         $('#up_name').val(brandName);
+        // Set the form action dynamically using the brand ID
+    $('#updateBrandForm').attr('action', '/edit/' + brandId);
     });
 
-    // Handling form submission for updating a brand
+    //Handling form submission for updating a brand
     $(document).on('submit', '#update_brand', function(e) {
         e.preventDefault();
-
         // var up_id = $('#up_id').val();
         // var up_name = $('#up_name').val();
         var formData = $(this).serialize();
-        console.log(up_name);
+
         $.ajax({
-            url: '/update-brand',
+            url: '{{ route('update.brand', ['id' => $brand->id]) }}',
             method: 'PUT', // Change the method to POST
             //data: { up_id: up_id, up_name: up_name },
             data: formData,
@@ -67,6 +69,7 @@ $(document).ready(function() {
                 if (response.status == 'success') {
                     $('#updateModal').modal('hide');
                     $('.table').load(location.href + ' .table');
+                    
                 }
             },
             error: function(xhr, status, error) {
@@ -74,6 +77,30 @@ $(document).ready(function() {
             }
         });
     });
+
+    // // Delete event
+    // $(document).on('click', '.delete_brand', function(e) {
+    //     e.preventDefault();
+    //     let brandId = $(this).data('id');
+    //     alert(brandId);
+    //     if(confirm('Are you sure to delete the product?')){
+
+    //         $.ajax({
+    //         url: '/delete-brand',
+    //         method: 'POST', 
+    //         data: {brand_id: brandId},
+    //         dataType: 'JSON',
+    //         success: function(response) {
+    //             if (response.status == 'success') {
+    //                 $('.table').load(location.href + ' .table');
+    //             }
+    //         }
+            
+    //     });
+
+    //     }
+    // });
+
 });
 </script>
 
