@@ -46,6 +46,7 @@ $(document).ready(function() {
         let brandId = $(this).data('id');
         let brandName = $(this).data('name');
         console.log(brandId + " brandId");
+        // console.log($brand->id + "checking");
         $('#up_id').val(brandId);
         $('#up_name').val(brandName);
    

@@ -14,9 +14,9 @@ use App\Http\Controllers\BrandController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('brands');
-// });
+Route::get('/', function () {
+    return view('home');
+});
 Route::prefix('brand')->group(function () {
     Route::get('/', [BrandController::class,'brands'])->name('brands');
     Route::post('/add-brand', [BrandController::class,'addBrand'])->name('add-brand');
