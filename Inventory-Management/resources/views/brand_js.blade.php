@@ -20,7 +20,7 @@ $(document).ready(function() {
 
         // AJAX POST request to add brand
         $.ajax({
-            url: '/add-brand',
+            url: 'brand/add-brand',
             method: 'POST',
             data: formData,
             dataType: 'JSON',
@@ -57,7 +57,7 @@ $(document).ready(function() {
         var formData = $(this).serialize();
 
         $.ajax({
-            url: '{{ route('update.brand', ['id' => $brand->id]) }}',
+            url: '{{ route('brand.update.brand', ['id' => $brand->id]) }}',
             method: 'PUT', // Change the method to POST
             //data: { up_id: up_id, up_name: up_name },
             data: formData,
@@ -82,7 +82,7 @@ $(document).ready(function() {
         if(confirm('Are you sure to delete the product?')){
 
             $.ajax({
-            url: '/delete-brand',
+            url: 'brand/delete-brand',
             method: 'POST', 
             data: {brand_id: brandId},
             dataType: 'JSON',

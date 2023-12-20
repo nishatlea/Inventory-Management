@@ -17,7 +17,9 @@ use App\Http\Controllers\BrandController;
 // Route::get('/', function () {
 //     return view('brands');
 // });
-Route::get('/', [BrandController::class,'brands'])->name('brands');
-Route::post('/add-brand', [BrandController::class,'addBrand'])->name('add-brand');
-Route::put('/edit/{id}', [BrandController::class, 'updateBrand'])->name('update.brand');
-Route::post('/delete-brand', [BrandController::class,'deleteBrand'])->name('delete-brand');
+Route::prefix('brand')->group(function () {
+    Route::get('/', [BrandController::class,'brands'])->name('brands');
+    Route::post('/add-brand', [BrandController::class,'addBrand'])->name('add-brand');
+    Route::put('/edit/{id}', [BrandController::class, 'updateBrand'])->name('brand.update.brand');
+    Route::post('/delete-brand', [BrandController::class,'deleteBrand'])->name('delete-brand');
+});

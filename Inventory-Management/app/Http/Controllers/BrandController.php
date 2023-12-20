@@ -49,15 +49,16 @@ class BrandController extends Controller
         //         'up_name.unique' => 'Brand already exists',
         //     ]
         // );
+        dump($id);
         $brand = Brand::findOrFail($id);
         $brand->name = $request->up_name; // Assuming the field name is 'up_name'
         $brand->save();
 
-        // return response()->json([
-        //     'status' => 'success',
-        // ]);
+        return response()->json([
+            'status' => 'success',
+        ]);
 
-        return redirect('/')->with('success', 'Brand updated successfully.');
+        //return redirect('/brand')->with('success', 'Brand updated successfully.');
     }
 
     public function deleteBrand(Request $request)

@@ -6,7 +6,7 @@
 <!-- Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
 
-<form action="/add-brand" method="post" id="addBrandForm">
+<form action="brand/add-brand" method="post" id="addBrandForm">
 
 <h4>Fields marked with * are necessary</h4>
 <div class="errMsgContainer mb-3"> </div>

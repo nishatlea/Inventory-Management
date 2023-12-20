@@ -3,7 +3,7 @@
 <div class="modal fade updateModal" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
     <!-- Modal content -->
     
-    <form action="{{ route('update.brand', ['id' => $brand->id]) }}" method="POST" id="updateBrandForm">
+    <form action="{{ route('brand.update.brand', ['id' => $brand->id]) }}" method="POST" id="updateBrandForm">
     @csrf <!-- CSRF token -->
     @method('PUT') <!-- Method spoofing -->
     <!-- Other form fields -->
