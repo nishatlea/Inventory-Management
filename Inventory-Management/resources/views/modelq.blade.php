@@ -20,15 +20,17 @@
     <tr>
       <th scope="col">Sl</th>
       <th scope="col">Name</th>
+      <th scope="col">Brand Name</th>
       <th scope="col">Entry Date</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-  @foreach ($brands as $key => $brand)
+  @foreach ($modals as $key => $modal)
     <tr>
         <th scope="row">{{ $key + 1 }}</th>
-        <td>{{ $brand->name }}</td>
+        <td>{{ $modal->name }}</td>
+        <td>{{ $modal->brand_name }}</td>
         <td>{{ $brand->entry_date }}</td>
         <td>
         <a href="#" 
@@ -52,10 +54,10 @@
   </tbody>
 </table>
 
-@include('update_modal_brand')
-@include('add_modal_brand')
+@include('modalq_update_modal_brand')
+@include('modalq_add_modal_brand')
 
-@include('brand_js')
+@include('modal_js')
 
 
 <!-- @push('css')
